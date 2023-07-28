@@ -1,8 +1,10 @@
 package ru.job4j.assertj;
 
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.withPrecision;
 
 class BoxTest {
     @Test
@@ -43,14 +45,20 @@ class BoxTest {
     }
     @Test
     void isThisDouble() {
-        Box box = new Box(8, 10);
+        Box box = new Box(4, 9);
         double num = box.getArea();
-        assertThat(num).isEqualTo(600).isNotNull();
+        assertThat(num).isEqualTo(140.29d, withPrecision(0.007d))
+                .isCloseTo(140.29d, withPrecision(0.01d))
+                .isCloseTo(140.29d, Percentage.withPercentage(1.0d)).isGreaterThan(140.29)
+                .isLessThan(140.30).isNotNull();
     }
     @Test
     void isThis0() {
-        Box box = new Box(9, 10);
+        Box box = new Box(4, 10);
         double num = box.getArea();
-        assertThat(num).isEqualTo(0).isNotNull();
+        assertThat(num).isEqualTo(173.2d, withPrecision(0.006d))
+                .isCloseTo(173.2d, withPrecision(0.01d))
+                .isCloseTo(173.2d, Percentage.withPercentage(1.0d)).isGreaterThan(173.2)
+                .isLessThan(173.21).isNotNull();
     }
 }
