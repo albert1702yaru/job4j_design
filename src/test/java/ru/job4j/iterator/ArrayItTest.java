@@ -1,27 +1,18 @@
 package ru.job4j.iterator;
 
-import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-class ArrayItTest {
+import org.junit.Test;
 
-    @Test
-    void whenMultiCallHasNextThenTrue() {
-        ArrayIt iterator = new ArrayIt(
-                new int[] {1, 2, 3}
-        );
-        boolean result = iterator.hasNext();
-        assertThat(result).isTrue();
-        assertThat(iterator.hasNext()).isTrue();
-    }
+import java.util.NoSuchElementException;
+
+public class ArrayItTest {
 
     @Test
-    void whenReadSequence() {
+    public void whenNextFromEmpty() {
         ArrayIt iterator = new ArrayIt(
-                new int[] {1, 2, 3}
+                new int[] {}
         );
-        assertThat(iterator.next()).isEqualTo(1);
-        assertThat(iterator.next()).isEqualTo(2);
-        assertThat(iterator.next()).isEqualTo(3);
+        assertThatThrownBy(iterator::next).isInstanceOf(NoSuchElementException.class);
     }
 }
