@@ -28,14 +28,14 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T set(int index, T newValue) {
-        T value = this.get(index);
+        T value = get(index);
         container[index] = newValue;
         return value;
     }
 
     @Override
     public T remove(int index) {
-        T value = this.get(index);
+        T value = get(index);
         System.arraycopy(container, index + 1, container, index, size - index - 1);
         container[size-- - 1] = null;
         modCount++;
