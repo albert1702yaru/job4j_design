@@ -41,7 +41,6 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
     public Iterator<E> iterator() {
         return new Iterator<>() {
             private final int expectedModCount = modCount;
-            private int index;
             private Node<E> temp = head;
 
             @Override
@@ -49,7 +48,7 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return index < size;
+                return temp != null;
             }
 
             @Override
@@ -59,7 +58,6 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
                 }
                 Node<E> next = temp;
                 temp = temp.next;
-                index++;
                 return next.item;
             }
         };
