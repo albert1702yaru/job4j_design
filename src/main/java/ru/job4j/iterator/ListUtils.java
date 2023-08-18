@@ -8,14 +8,6 @@ public class ListUtils {
     public static <T> void addBefore(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
         list.add(index, value);
-//        ListIterator<T> iterator = list.listIterator();
-//        while (iterator.hasNext()) {
-//            if (iterator.nextIndex() == index) {
-//                iterator.add(value);
-//                break;
-//            }
-//            iterator.next();
-//        }
     }
 
     public static <T> void addAfter(List<T> list, int index, T value) {
