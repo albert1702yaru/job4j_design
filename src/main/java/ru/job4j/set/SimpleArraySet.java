@@ -19,12 +19,14 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
 
     @Override
     public boolean contains(T value) {
+        boolean res = false;
         for (T t : set) {
             if (value == t) {
-                return true;
+                res = true;
+                break;
             }
         }
-        return false;
+        return res;
     }
 
     @Override
